@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        /* CSS yang lebih menarik */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #1c1e22;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 150px; /* Sesuaikan ukuran logo sesuai kebutuhan */
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #61dafb;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background-color: #61dafb;
+            color: #282c34;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .video-container {
+            background-color: #282c34;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Masukkan Link Video</h1>
+        <input type="text" id="videoLink" placeholder="Masukkan link video di sini">
+        <button onclick="playVideo()">Putar Video</button>
+        <div class="video-grid" id="videoGrid">
+            <!-- Kontainer video akan ditambahkan di sini -->
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk memutar video
+        function playVideo() {
+            var link = document.getElementById('videoLink').value;
+            if (link) {
+                var videoGrid = document.getElementById('videoGrid');
+                videoGrid.innerHTML = ''; // Kosongkan grid video sebelum menambah yang baru
+
+                // Tambahkan lima elemen video player
+                for (var i = 0; i < 10; i++) {
+                    var videoContainer = document.createElement('div');
+                    videoContainer.className = 'video-container';
+
+                    var iframe = document.createElement('iframe');
+                    iframe.src = link;
+                    iframe.frameBorder = 0;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                    iframe.allowFullscreen = true;
+
+                    videoContainer.appendChild(iframe);
+                    videoGrid.appendChild(videoContainer);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
